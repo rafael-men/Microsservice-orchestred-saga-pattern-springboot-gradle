@@ -1,5 +1,7 @@
 <h1>Arquitetura de Microsserviços: Padrão Saga Orquestrado</h1>
 
+<h3>Este Projeto consiste numa aplicação do padrão de projeto saga orquestrado, utilizando apache kafka para comunicação entre os microsserviços.</h3>
+
   <h2>Execução do Projeto</h2>
 
 
