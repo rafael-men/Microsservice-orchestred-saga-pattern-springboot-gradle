@@ -1,2 +1,33 @@
 server:
   port: 8090
+
+spring:
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    topic:
+      orchestrator: orchestrator
+      product-validation-service: product-validation-service
+      product-validation-fail: product-validation-fail
+
+    consumer:
+      group-id: product-validation-group
+      auto-offset-reset: latest
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5435/product-db
+    username: postgres
+    password: senha
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+logging:
+  level:
+    org:
+      apache:
+        kafka: OFF

@@ -1,2 +1,30 @@
 server:
   port: 8092
+
+spring:
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    topic:
+      teste: teste
+    consumer:
+      group-id: payment-group
+      auto-offset-reset: latest
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5434/inventory-db
+    username: postgres
+    password: senha
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+logging:
+  level:
+    org:
+      apache:
+        kafka: OFF
