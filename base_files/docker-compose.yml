@@ -48,8 +48,6 @@ services:
       - POSTGRES_PASSWORD=senha
     ports:
       - 5434:5432
-
-
   kafka:
     container_name: kafka
     image: obsidiandynamics/kafka
@@ -88,6 +86,21 @@ services:
           brokers: ["kafka:29092"]
     depends_on:
       - "kafka"
+
+
+  order-service:
+    build: './order-service'
+    container_name: order-service
+    depends_on:
+      - order-db
+      - kafka
+    networks:
+      - orchestrator-saga
+    environment:
+      - localhost:9092=kafka:29092
+      - MONGO_DB_URI=mongodb://root:123456@order-db:27017
+    ports:
+      - 3000:3000
 
 networks:
   orchestrator-saga:

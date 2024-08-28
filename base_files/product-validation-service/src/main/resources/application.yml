@@ -7,7 +7,7 @@ spring:
     bootstrap-servers: localhost:9092
     topic:
       orchestrator: orchestrator
-      product-validation-service: product-validation-service
+      product-validation-success: product-validation-success
       product-validation-fail: product-validation-fail
 
     consumer:

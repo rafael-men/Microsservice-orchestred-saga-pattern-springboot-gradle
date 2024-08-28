@@ -1,8 +1,9 @@
-package br.com.microservices.orchestrated.orchestratorservice;
+package br.com.microservices.orchestrated.orchestratorservice.Core.Enums;
+
 
 import lombok.Getter;
 
-@Getter
+
 public enum Etopics {
 
     START_SAGA("start-saga"),
@@ -19,7 +20,10 @@ public enum Etopics {
 
     private final String topic;
 
-    // Construtor privado
+    public String getTopic() {
+        return topic;
+    }
+
     Etopics(String topic) {
         this.topic = topic;
     }
