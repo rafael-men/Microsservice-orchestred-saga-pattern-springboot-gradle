@@ -1,5 +1,6 @@
 package br.com.microservices.orchestrated.orderservice.Core.Consumer;
 
+import br.com.microservices.orchestrated.orderservice.Core.Service.EventService;
 import br.com.microservices.orchestrated.orderservice.Core.Utils.JsonUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 public class EventConsumer {
 
     private static final Logger log = LoggerFactory.getLogger(EventConsumer.class);
+    private final EventService service;
     private final JsonUtils jsonUtils;
 
 
@@ -23,5 +25,6 @@ public class EventConsumer {
     public void ConsumerNotifyEndingTopic(String payload) {
         log.info("Receiving ending notification event.",payload);
         var event = jsonUtils.toEvent(payload);
+        service.notifyEnding(event);
     }
 }

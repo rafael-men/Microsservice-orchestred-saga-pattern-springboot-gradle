@@ -14,4 +14,12 @@ import java.util.List;
 public class OrderRequest {
 
     private List<OrderProducts> products;
+
+    public List<OrderProducts> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<OrderProducts> products) {
+        this.products = products;
+    }
 }
