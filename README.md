@@ -20,7 +20,7 @@
         <li>Gradle 7.6 ou superior</li>
     </ul>
 
-  <h2>desenvolveremos a seguinte aquitetura:</h2>
+  <h2>Esse projeto baseia-se na seguinte aquitetura:</h2>
 
   ![Arquitetura Proposta](https://github.com/user-attachments/assets/27243c82-f328-4945-be19-0de22fd85595)
 
@@ -69,8 +69,3 @@
    <p>Ou então, entrar no diretório: <code>build/libs</code> e executar o comando:</p>
     <pre><code>java -jar nome_do_jar.jar</code></pre>
 
-  <h2>Acessando a aplicação</h2>
-
-
-   <p>Para acessar as aplicações e realizar um pedido, basta acessar a URL:</p>
-    <p><a href="http://localhost:3000/swagger-ui.html">http://localhost:3000/swagger-ui.html</a></p>
