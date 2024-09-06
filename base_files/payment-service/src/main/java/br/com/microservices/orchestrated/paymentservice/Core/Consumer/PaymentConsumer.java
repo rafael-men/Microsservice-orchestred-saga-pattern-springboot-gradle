@@ -1,6 +1,7 @@
 package br.com.microservices.orchestrated.paymentservice.Core.Consumer;
 
 
+import br.com.microservices.orchestrated.paymentservice.Core.Service.PaymentService;
 import br.com.microservices.orchestrated.paymentservice.Core.Utils.JsonUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 public class PaymentConsumer {
 
     private static final Logger log = LoggerFactory.getLogger(PaymentConsumer.class);
+    private final PaymentService paymentService;
     private final JsonUtils jsonUtils;
 
     @KafkaListener(groupId = "${spring.kafka.consumer.group-id}",
@@ -23,6 +25,7 @@ public class PaymentConsumer {
     public void ConsumerSuccessEvent(String payload) {
         log.info("Receiving event.",payload);
         var event = jsonUtils.toEvent(payload);
+        paymentService.realizePayment(event);
     }
 
 
@@ -32,6 +35,7 @@ public class PaymentConsumer {
     public void ConsumerFailEvent(String payload) {
         log.info("Receiving Rollback event.",payload);
         var event = jsonUtils.toEvent(payload);
+        paymentService.realizeRefund(event);
     }
 
 }
