@@ -2,6 +2,7 @@ package br.com.microservices.orchestrated.inventoryservice.Core.Consumer;
 
 
 
+import br.com.microservices.orchestrated.inventoryservice.Core.Service.InventoryService;
 import br.com.microservices.orchestrated.inventoryservice.Core.Utils.JsonUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ public class InventoryConsumer {
 
     private static final Logger log = LoggerFactory.getLogger(InventoryConsumer.class);
     private final JsonUtils jsonUtils;
+    private final InventoryService inventoryService;
 
 
 
@@ -26,6 +28,7 @@ public class InventoryConsumer {
     public void ConsumerSuccessEvent(String payload) {
         log.info("Receiving event.",payload);
         var event = jsonUtils.toEvent(payload);
+        inventoryService.updateInventory(event);
     }
 
 
@@ -35,6 +38,7 @@ public class InventoryConsumer {
     public void ConsumerFailEvent(String payload) {
         log.info("Receiving Rollback event.",payload);
         var event = jsonUtils.toEvent(payload);
+        inventoryService.rollbackInventory(event);
     }
 
 }
