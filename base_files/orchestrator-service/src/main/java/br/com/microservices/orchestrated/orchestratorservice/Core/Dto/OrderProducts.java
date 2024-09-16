@@ -1,14 +1,31 @@
 package br.com.microservices.orchestrated.orchestratorservice.Core.Dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class OrderProducts {
 
-    private String product;
+    private Product product;
     private int quantity;
+
+    public OrderProducts(int quantity, Product product) {
+        this.quantity = quantity;
+        this.product = product;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
