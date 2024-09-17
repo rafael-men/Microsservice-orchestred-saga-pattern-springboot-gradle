@@ -1,6 +1,7 @@
 package br.com.microservices.orchestrated.orchestratorservice.Core.Consumer;
 
 
+import br.com.microservices.orchestrated.orchestratorservice.Core.Service.OrchestratorService;
 import br.com.microservices.orchestrated.orchestratorservice.Core.Utils.JsonUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 public class SagaOrchestratorConsumer {
 
     private static final Logger log = LoggerFactory.getLogger(SagaOrchestratorConsumer.class);
+    private final OrchestratorService orchestratorService;
     private final JsonUtils jsonUtils;
 
 
@@ -24,6 +26,7 @@ public class SagaOrchestratorConsumer {
     public void ConsumerStartSagaEvent(String payload) {
         log.info("Receiving event.",payload);
         var event = jsonUtils.toEvent(payload);
+        orchestratorService.StartSaga(event);
     }
 
 
@@ -33,6 +36,7 @@ public class SagaOrchestratorConsumer {
     public void ConsumerOrchestratorEvent(String payload) {
         log.info("Receiving event.",payload);
         var event = jsonUtils.toEvent(payload);
+        orchestratorService.continueSaga(event);
     }
 
 
@@ -42,6 +46,7 @@ public class SagaOrchestratorConsumer {
     public void ConsumerFinishSuccessEvent(String payload) {
         log.info("Receiving event.",payload);
         var event = jsonUtils.toEvent(payload);
+        orchestratorService.finishSagaSuccess(event);
     }
 
 
@@ -51,5 +56,6 @@ public class SagaOrchestratorConsumer {
     public void ConsumerFinishFailEvent(String payload) {
         log.info("Receiving event.",payload);
         var event = jsonUtils.toEvent(payload);
+        orchestratorService.finishSagaFail(event);
     }
 }

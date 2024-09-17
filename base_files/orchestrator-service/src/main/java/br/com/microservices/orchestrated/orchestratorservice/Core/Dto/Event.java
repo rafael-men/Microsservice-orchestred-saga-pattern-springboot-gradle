@@ -2,6 +2,7 @@ package br.com.microservices.orchestrated.orchestratorservice.Core.Dto;
 
 
 
+import br.com.microservices.orchestrated.orchestratorservice.Core.Enums.EEventSource;
 import br.com.microservices.orchestrated.orchestratorservice.Core.Enums.ESagaStatus;
 
 import java.time.LocalDateTime;
@@ -51,11 +52,11 @@ public class Event {
         return createdAt;
     }
 
-    public String getSource() {
+    public String getSource(EEventSource orchestrator) {
         return source;
     }
 
-    public ESagaStatus getStatus() {
+    public ESagaStatus getStatus(ESagaStatus success) {
         return status;
     }
 

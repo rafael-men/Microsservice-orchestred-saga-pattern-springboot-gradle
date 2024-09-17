@@ -1,9 +1,6 @@
 package br.com.microservices.orchestrated.orchestratorservice.Core.Enums;
 
 
-import lombok.Getter;
-
-
 public enum Etopics {
 
     START_SAGA("start-saga"),
